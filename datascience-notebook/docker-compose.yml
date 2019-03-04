@@ -1,0 +1,17 @@
+services:
+  jupyterlab:
+    # build: .
+    image: openjny/datascience-notebook:latest
+    tty: true
+    environment:
+      - LANG: C.UTF-8
+      - JUPYTER_ENABLE_LAB: 1
+      - GRANT_SUDO: "no"
+      - JUPYTER_TOKEN: jupyter
+    expose:
+      - "8888"
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./:/home/jovyan/work"
+    command: start.sh jupyter lab --NotebookApp.token=''
