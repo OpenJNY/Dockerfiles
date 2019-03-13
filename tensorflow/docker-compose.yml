@@ -1,0 +1,13 @@
+version: "3"
+services:
+  jupyterlab:
+    # build: .
+    image: openjny/tensorflow:2.0.0a0-py3-jupyter
+    # tty: true
+    expose:
+      - "8888"
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./:/tf/notebooks"
+    command: jupyter lab --allow-root --ip=0.0.0.0 --no-browser --NotebookApp.token=''
