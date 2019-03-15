@@ -1,12 +1,12 @@
-FROM tensorflow/tensorflow:2.0.0a0-py3-jupyter
-MAINTAINER "openjny <twitter:@openjny>"
-
-# $ docker build 2.0.0a0-py3-jupyter.Dockerfile -t openjny/tensorflow:2.0.0a0-py3-jupyter
-# $ docker push openjny/tensorflow:2.0.0a0-py3-jupyter
+ARG TENSORFLOW_TAG
+FROM tensorflow/tensorflow:${TENSORFLOW_TAG}
+LABEL maintainer "openjny <twitter:@openjny>"
 
 # install python packages
-RUN pip install --no-cache-dir \
+RUN pip install --no-cache-dir --upgrade \
+    tensorflow-probability \
     tensorflow-datasets \
+    jupyter \
     jupyterlab
 
 # install node and npm
@@ -19,3 +19,4 @@ RUN apt-get install -y git wget nodejs npm && \
     git clone https://github.com/lambdalisue/jupyter-vim-binding $(jupyter --data-dir)/nbextensions/vim_binding && \
     jupyter nbextension enable vim_binding/vim_binding && \
     jupyter labextension install jupyterlab_vim
+

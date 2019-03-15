@@ -1,8 +1,9 @@
 version: "3"
 services:
   jupyterlab:
+    # docker run --rm -i -v $PWD:/tf/notebooks -p 8888:8888 openjny/tensorflow:latest jupyter lab --allow-root --no-browser
     # build: .
-    image: openjny/tensorflow:2.0.0a0-py3-jupyter
+    image: openjny/tensorflow:latest
     # tty: true
     expose:
       - "8888"
